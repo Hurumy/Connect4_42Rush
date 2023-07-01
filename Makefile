@@ -6,7 +6,7 @@
 #    By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/30 21:30:46 by komatsud          #+#    #+#              #
-#    Updated: 2023/07/01 14:12:25 by komatsud         ###   ########.fr        #
+#    Updated: 2023/07/01 14:55:53 by taekklee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,11 +39,10 @@ OBJS	= $(SRCS:.c=.o)
 
 LIBFT_DIR	=	./libft
 LIBFT		=	$(LIBFT_DIR)/libft.a
-$(LIBFT) : FORCE
-	@make -C $(LIBFT_DIR) all
 
+all: $(NAME)
 
-%.o		:	%.c
+%.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 $(NAME): $(LIBFT) $(OBJS)
@@ -53,8 +52,8 @@ $(DEBUG):
 	make all
 	$(CC) $(OBJS) $(CFLAGS_DEBUG) $(LIBFT) -o $(NAME)
 
-
-all: $(NAME)
+$(LIBFT): FORCE
+	@make -C $(LIBFT_DIR) all
 
 clean:
 	@make -C $(LIBFT_DIR) clean
