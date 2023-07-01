@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 21:31:47 by komatsud          #+#    #+#             */
-/*   Updated: 2023/06/30 21:50:05 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 09:58:19 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ static int	ft_is_positive_num(char *str)
 		i ++;
 	}
 	if (status == -1)
+	{
+		ft_error();
 		return (-1);
+	}
 	return (0);
 }
 
@@ -41,19 +44,24 @@ static int	ft_atoi_rewrite(char *str)
 	int		i;
 	size_t	num;
 
-	while (str[i] != NULL)
+	i = 0;
+	num = 0;
+	while (str[i] != '\0')
 	{
 		num = num * 10 + str[i] - '0';
 		if (num >= INT_MAX)
+		{
+			ft_error();
 			return (-1);
+		}
+		i ++;
 	}
+	return (num);
 }
 
-int	ft_arg_to_number(int argc, char *argv)
+int	ft_arg_to_number(int argc, char **argv, t_info *t_maps)
 {
 	int		status;
-	size_t	law;
-	size_t	col;
 
 	status = 0;
 	if (argc != 3)
@@ -64,9 +72,77 @@ int	ft_arg_to_number(int argc, char *argv)
 	status = ft_is_positive_num(argv[2]);
 	if (status == -1)
 		return (-1);
+	t_maps->row = ft_atoi_rewrite(argv[1]);
+	t_maps->col = ft_atoi_rewrite(argv[2]);
+	return (0);
 }
 
-int	ft_init(int argc, int argv)
+int	ft_init_map_row(t_info *t_maps, size_t y)
 {
-	
+	size_t	x;
+	int		mode;
+
+	x = 0;
+	mode = 0;
+	if (y == 0 || y == t_maps->row + 1)
+		mode = 1;
+	while (x < t_maps->col + 2)
+	{
+		t_maps->maps[y][x] = '0';
+		if (mode == 1 || x == 0 || x == t_maps->col + 1)
+			t_maps->maps[y][x] = '\0';
+		x ++;
+	}
+	return (0);
+}
+
+int	ft_malloc_maps(t_info *t_maps)
+{
+	size_t	i;
+
+	i = 0;
+	t_maps->maps = malloc(sizeof(char *) * (t_maps->row + 2));
+	if (t_maps->maps == NULL)
+	{
+		ft_error();
+		return (-1);
+	}
+	while (i < t_maps->row + 2)
+	{
+		t_maps->maps[i] = malloc(sizeof(char) * (t_maps->col + 2));
+		if (t_maps->maps[i] == NULL)
+		{
+			ft_free_double_pointer(t_maps->maps);
+			ft_error();
+			return (-1);
+		}
+		ft_init_map_row(t_maps, i);
+		i ++;
+	}
+	return (0);
+}
+
+//convert arg into number
+//check args validity
+//malloc maps
+//init maps
+int	ft_init(int argc, char **argv, t_info *t_maps)
+{
+	int	status;
+
+	status = ft_arg_to_number(argc, argv, t_maps);
+	if (status == -1)
+	{
+		ft_error();
+		return (-1);
+	}
+	if (t_maps->col < 7 || t_maps->row < 6)
+	{
+		ft_error();
+		return (-1);
+	}
+	status = ft_malloc_maps(t_maps);
+	if (status == -1)
+		return (-1);
+	return (0);
 }
