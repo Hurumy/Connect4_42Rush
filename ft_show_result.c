@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_connect4.c                                      :+:      :+:    :+:   */
+/*   ft_show_result.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 20:10:52 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 14:03:29 by komatsud         ###   ########.fr       */
+/*   Created: 2023/07/01 13:30:55 by komatsud          #+#    #+#             */
+/*   Updated: 2023/07/01 14:05:57 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_connect4.h"
 
-//init, get infos, decide which one to play first
-int	main(int argc, char **argv)
+int	ft_show_result(t_info *t_maps)
 {
-	int		status;
-	t_info	t_maps;
-
-	status = ft_init(argc, argv, &t_maps);
-	if (status == -1)
-		return (-1);
-	ft_randomly_choose_first_move(&t_maps);
-	ft_draw_field(&t_maps);
-	status = ft_get_move(&t_maps);
-	if (status == -1)
-		return (-1);
-	printf("%d\n", t_maps.winner);
-	ft_show_result(&t_maps);
-	ft_exit(&t_maps);
+	if (t_maps->winner == 1)
+	{
+		printf(GREEN"\nPlayers WIN.\n\n"RESET_COLOR);
+	}
+	if (t_maps->winner == 2)
+	{
+		printf(RED"\nCPUs WIN.\n\n"RESET_COLOR);
+	}
+	if (t_maps->winner == 3)
+	{
+		printf(WHITE"\nDraw.\n\n"RESET_COLOR);
+	}
 	return (0);
 }

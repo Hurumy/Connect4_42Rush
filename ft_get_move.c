@@ -6,13 +6,12 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:13:35 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 12:25:28 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 14:06:29 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_connect4.h"
 
-//row, column, player or AI
 int	ft_get_move(t_info *t_maps)
 {
 	int		status;
@@ -33,7 +32,7 @@ int	ft_get_move(t_info *t_maps)
 		if (in_turn % 2 == 0)
 		{
 			printf(CYAN"Turn %ld.\nCPUs turn.\n"RESET_COLOR, turn_number);
-			where_to_put = 4;
+			where_to_put = 5;
 		}
 		status = ft_add_pawn(t_maps, where_to_put, in_turn % 2 + 1);
 		if (status == 0)
