@@ -20,38 +20,38 @@ int	ft_draw_field(t_info *t_maps)
 	size_t	i;
 
 	y = 1;
-	printf("\n");
+	ft_printf("\n");
 	while (y < t_maps->row + 1)
 	{
 		x = 1;
 		i = 1;
 		while (i < t_maps->col + 1)
 		{
-			printf("－");
+			ft_printf("－");
 			i ++;
 		}
-		printf("\n");
+		ft_printf("\n");
 		while (x < t_maps->col + 1)
 		{
-			printf(GREY"|"RESET_COLOR);
+			ft_printf(GREY"|"RESET_COLOR);
 			if (t_maps->maps[y][x] == '0')
-				printf(" ");
+				ft_printf(" ");
 			else if (t_maps->maps[y][x] == '1')
-				printf(GREEN"●"RESET_COLOR);
+				ft_printf(GREEN"●"RESET_COLOR);
 			else if (t_maps->maps[y][x] == '2')
-				printf(RED"◆"RESET_COLOR);
+				ft_printf(RED"◆"RESET_COLOR);
 			x ++;
 		}
-		printf(GREY"|"RESET_COLOR);
-		printf("\n");
+		ft_printf(GREY"|"RESET_COLOR);
+		ft_printf("\n");
 		y ++;
 	}
 	i = 1;
 	while (i < t_maps->col + 1)
 	{
-		printf("－");
+		ft_printf("－");
 		i ++;
 	}
-	printf("\n\n");
+	ft_printf("\n\n");
 	return (0);
 }

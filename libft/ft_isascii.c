@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: taekklee <taekklee@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 21:38:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 09:54:37 by komatsud         ###   ########.fr       */
+/*   Created: 2023/01/11 21:35:55 by taekklee          #+#    #+#             */
+/*   Updated: 2023/01/13 20:19:26 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_connect4.h"
+#include "libft.h"
 
-void	ft_error(void)
+int	ft_isascii(int c)
 {
-	ft_printf("Error\n");
-}
-
-void	ft_error_with_free(t_info *t_maps)
-{
-	ft_free(t_maps);
-	ft_printf("Error\n");
-	return ;
+	return (0 <= c && c <= 0177);
 }

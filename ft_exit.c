@@ -15,6 +15,6 @@
 int	ft_exit(t_info *t_maps)
 {
 	ft_free(t_maps);
-	printf(GREEN"GOOD BYE.\n"RESET_COLOR);
+	ft_printf(GREEN"GOOD BYE.\n"RESET_COLOR);
 	return (0);
 }

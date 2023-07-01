@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: taekklee <taekklee@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 21:38:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 09:54:37 by komatsud         ###   ########.fr       */
+/*   Created: 2023/01/17 16:12:38 by taekklee          #+#    #+#             */
+/*   Updated: 2023/03/02 21:20:02 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_connect4.h"
+#include "libft.h"
 
-void	ft_error(void)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	ft_printf("Error\n");
-}
+	size_t	i;
 
-void	ft_error_with_free(t_info *t_maps)
-{
-	ft_free(t_maps);
-	ft_printf("Error\n");
+	i = 0;
+	while (s[i] != '\0')
+	{
+		(*f)((unsigned int)i, s + i);
+		++i;
+	}
 	return ;
 }

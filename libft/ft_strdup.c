@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: taekklee <taekklee@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 21:38:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 09:54:37 by komatsud         ###   ########.fr       */
+/*   Created: 2023/01/13 19:13:28 by taekklee          #+#    #+#             */
+/*   Updated: 2023/03/02 21:21:12 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_connect4.h"
+#include "libft.h"
 
-void	ft_error(void)
+char	*ft_strdup(const char *s1)
 {
-	ft_printf("Error\n");
-}
+	char	*dst;
+	size_t	len;
 
-void	ft_error_with_free(t_info *t_maps)
-{
-	ft_free(t_maps);
-	ft_printf("Error\n");
-	return ;
+	len = ft_strlen(s1);
+	dst = (char *)ft_calloc(len + 1, sizeof(char));
+	if (dst == NULL)
+		return (NULL);
+	ft_memcpy(dst, s1, len);
+	return (dst);
 }

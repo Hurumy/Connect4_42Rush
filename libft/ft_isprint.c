@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: taekklee <taekklee@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 21:38:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 09:54:37 by komatsud         ###   ########.fr       */
+/*   Created: 2023/01/11 21:39:33 by taekklee          #+#    #+#             */
+/*   Updated: 2023/01/13 20:18:42 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_connect4.h"
+#include "libft.h"
 
-void	ft_error(void)
+int	ft_isprint(int c)
 {
-	ft_printf("Error\n");
-}
-
-void	ft_error_with_free(t_info *t_maps)
-{
-	ft_free(t_maps);
-	ft_printf("Error\n");
-	return ;
+	return (040 <= c && c <= 0176);
 }

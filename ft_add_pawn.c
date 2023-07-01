@@ -24,12 +24,12 @@ int	ft_add_pawn(t_info *t_maps, size_t x, int player)
 
 	if (x < 1 || x > t_maps->col)
 	{
-		printf(RED"You can NOT put to this line. CHOOSE ANOTHER ONE\n"RESET_COLOR);
+		ft_printf(RED"You can NOT put to this line. CHOOSE ANOTHER ONE\n"RESET_COLOR);
 		return (1);
 	}
 	if (t_maps->maps[1][x] != '0')
 	{
-		printf(RED"This line is already filllled!!!!!!! CHOOSE ANOTHER ONE\n"RESET_COLOR);
+		ft_printf(RED"This line is already filllled!!!!!!! CHOOSE ANOTHER ONE\n"RESET_COLOR);
 		return (1);
 	}
 	y = 2;

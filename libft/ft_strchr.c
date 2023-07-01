@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: taekklee <taekklee@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 21:38:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 09:54:37 by komatsud         ###   ########.fr       */
+/*   Created: 2023/01/13 13:51:08 by taekklee          #+#    #+#             */
+/*   Updated: 2023/03/02 21:23:56 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_connect4.h"
+#include "libft.h"
 
-void	ft_error(void)
+char	*ft_strchr(const char *s, int c)
 {
-	ft_printf("Error\n");
-}
+	size_t	i;
 
-void	ft_error_with_free(t_info *t_maps)
-{
-	ft_free(t_maps);
-	ft_printf("Error\n");
-	return ;
+	i = 0;
+	while (s[i] != '\0' && s[i] != (char)c)
+		++i;
+	if (s[i] == (char)c)
+		return ((char *)(s + i));
+	return (NULL);
 }

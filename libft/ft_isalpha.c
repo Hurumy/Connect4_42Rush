@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: taekklee <taekklee@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 21:38:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 09:54:37 by komatsud         ###   ########.fr       */
+/*   Created: 2023/01/11 15:36:16 by taekklee          #+#    #+#             */
+/*   Updated: 2023/01/13 20:19:35 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_connect4.h"
+#include "libft.h"
 
-void	ft_error(void)
+static	int	ft_islower(int c)
 {
-	ft_printf("Error\n");
+	return ('a' <= c && c <= 'z');
 }
 
-void	ft_error_with_free(t_info *t_maps)
+static	int	ft_isupper(int c)
 {
-	ft_free(t_maps);
-	ft_printf("Error\n");
-	return ;
+	return ('A' <= c && c <= 'Z');
+}
+
+int	ft_isalpha(int c)
+{
+	return (ft_islower(c) || ft_isupper(c));
 }

@@ -16,8 +16,7 @@
 # include <time.h>
 # include <limits.h>
 # include <stdio.h>
-//# include "libft.h"
-//# include "ft_printf.h"
+# include "libft/libft.h"
 //# include "get_next_line.h"
 
 //////		**after add LIBFT, FIX PRINTF TO FT_PRINTF** 	//////

@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: taekklee <taekklee@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 21:38:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 09:54:37 by komatsud         ###   ########.fr       */
+/*   Created: 2023/01/17 17:27:47 by taekklee          #+#    #+#             */
+/*   Updated: 2023/06/06 09:16:43 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_connect4.h"
+#include "libft.h"
 
-void	ft_error(void)
+void	ft_putstr_fd(char *s, int fd)
 {
-	ft_printf("Error\n");
-}
+	size_t	len;
+	ssize_t	written_bytes;
 
-void	ft_error_with_free(t_info *t_maps)
-{
-	ft_free(t_maps);
-	ft_printf("Error\n");
+	len = ft_strlen(s);
+	while (len > 0)
+	{
+		written_bytes = write(fd, s, len);
+		if (written_bytes == -1)
+			break ;
+		len -= written_bytes;
+	}
 	return ;
 }

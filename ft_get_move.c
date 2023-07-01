@@ -27,12 +27,12 @@ int	ft_get_move(t_info *t_maps)
 	{
 		if (in_turn % 2 == 1)
 		{
-			printf(CYAN"Turn %ld.\nPlayers turn.\n"RESET_COLOR, turn_number);
+			ft_printf(CYAN"Turn %u.\nPlayers turn.\n"RESET_COLOR, turn_number);
 			where_to_put = 4;
 		}
 		if (in_turn % 2 == 0)
 		{
-			printf(CYAN"Turn %ld.\nCPUs turn.\n"RESET_COLOR, turn_number);
+			ft_printf(CYAN"Turn %u.\nCPUs turn.\n"RESET_COLOR, turn_number);
 			where_to_put = 4;
 		}
 		status = ft_add_pawn(t_maps, where_to_put, in_turn % 2 + 1);

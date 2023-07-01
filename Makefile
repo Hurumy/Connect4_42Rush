@@ -6,32 +6,65 @@
 #    By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/30 21:30:46 by komatsud          #+#    #+#              #
-#    Updated: 2023/07/01 10:27:44 by komatsud         ###   ########.fr        #
+#    Updated: 2023/07/01 13:45:22 by taekklee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= connect4
 
 CC		= cc
+CFLAGS	= -Wall -Wextra -Werror
 
 RM		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+DEBUG			= debug
+CFLAGS_DEBUG	= -Wall -Wextra -Werror -g -fsanitize=address
 
-SRCS	= *.c
+# find *.c | sed 's/$/ \\/'
+SRCS	= \
+			ft_add_pawn.c \
+			ft_connect4.c \
+			ft_draw_field.c \
+			ft_error.c \
+			ft_exit.c \
+			ft_free.c \
+			ft_get_move.c \
+			ft_init.c \
+			ft_is_game_ended.c \
+			ft_randomly_choose_first_move.c \
 
-ARCS	= include/libft.a
+
+OBJS	= $(SRCS:.c=.o)
+
+LIBFT_DIR	=	./libft
+LIBFT		=	$(LIBFT_DIR)/libft.a
+$(LIBFT) : FORCE
+	@make -C $(LIBFT_DIR) all
+
+
+%.o		:	%.c
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(OBJS) $(CFLAGS) $(LIBFT) -o $@
+
+$(DEBUG):
+	make all
+	$(CC) $(OBJS) $(CFLAGS_DEBUG) $(LIBFT) -o $(NAME)
+
 
 all: $(NAME)
 
 clean:
-	$(RM) $(NAME)
+	@make -C $(LIBFT_DIR) clean
+	$(RM) $(OBJS)
 
 fclean: clean
+	@make -C $(LIBFT_DIR) fclean
+	$(RM) $(NAME)
 
 re: fclean all
 
-$(NAME): $(SRCS)
-	$(CC) $(CFLAGS) -o $(NAME) $(SRCS)
+FORCE:
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re FORCE

@@ -130,7 +130,7 @@ int	ft_init(int argc, char **argv, t_info *t_maps)
 {
 	int	status;
 
-	printf(GREY"\nInitializing system ...\n"RESET_COLOR);
+	ft_printf(GREY"\nInitializing system ...\n"RESET_COLOR);
 	status = ft_arg_to_number(argc, argv, t_maps);
 	if (status == -1)
 	{
@@ -145,6 +145,6 @@ int	ft_init(int argc, char **argv, t_info *t_maps)
 	status = ft_malloc_maps(t_maps);
 	if (status == -1)
 		return (-1);
-	printf(GREY"Successfully Completed. Game Start.\n\n"RESET_COLOR);
+	ft_printf(GREY"Successfully Completed. Game Start.\n\n"RESET_COLOR);
 	return (0);
 }
