@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:17:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 14:09:15 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 16:17:28 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <time.h>
 # include <limits.h>
 # include <stdio.h>
+# include <mlx.h>
 # include "libft/libft.h"
 //# include "get_next_line.h"
 
@@ -47,9 +48,21 @@ typedef struct s_info
 	char	**maps;
 	int		first_move;
 	int		winner;
+	void	*screen;
+	void	*window;
+	void	*tip_empty;
+	void	*tip_player;
+	void	*tip_cpu;
+	void	*tip_cursor;
 }	t_info;
 
 //ft_init.c
+int		ft_is_num(char c);
+int		ft_is_positive_num(char *str);
+int		ft_atoi_rewrite(char *str);
+int		ft_arg_to_number(int argc, char **argv, t_info *t_maps);
+int		ft_init_map_row(t_info *t_maps, size_t y);
+int		ft_malloc_maps(t_info *t_maps);
 int		ft_init(int argc, char **argv, t_info *t_maps);
 
 //ft_randomly_choose_first_move.c
@@ -81,5 +94,25 @@ int		ft_free(t_info *t_maps);
 //ft_exit.c
 int		ft_exit(t_info *t_maps);
 
+
+//bonus
+//ft_libx_connect4.c
+int		main_libx(int argc, char **argv);
+
+//ft_init_libx.c
+int		ft_init_libx(int argc, char **argv, t_info *t_maps);
+int		ft_arg_to_number_libx(int argc, char **argv, t_info *t_maps);
+
+//ft_draw_tiles.c
+int		ft_draw_field_libx(t_info *t_maps);
+
+//ft_free_libx.c
+int		ft_free_libx(t_info *t_maps);
+
+//ft_error_libx.c
+void	ft_error_with_free_libx(t_info *t_maps);
+
+//mlx.h?
+void	*mlx_png_file_to_image(void *mlx_ptr, char *file, int *width, int *height);
 
 #endif

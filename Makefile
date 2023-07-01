@@ -6,7 +6,7 @@
 #    By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/30 21:30:46 by komatsud          #+#    #+#              #
-#    Updated: 2023/07/01 14:12:25 by komatsud         ###   ########.fr        #
+#    Updated: 2023/07/01 16:27:15 by komatsud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,16 @@ SRCS	= \
 			ft_is_game_ended.c \
 			ft_randomly_choose_first_move.c \
 			ft_show_result.c \
-
+			bonus/ft_draw_tiles.c \
+			bonus/ft_error_libx.c \
+			bonus/ft_free_libx.c \
+			bonus/ft_hooks.c \
+			bonus/ft_init_libx.c \
+			bonus/ft_libx_connect4.c \
 
 OBJS	= $(SRCS:.c=.o)
+
+MINILIBX	=	libmlx.dylib
 
 LIBFT_DIR	=	./libft
 LIBFT		=	$(LIBFT_DIR)/libft.a
@@ -47,11 +54,11 @@ $(LIBFT) : FORCE
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) $(LIBFT) -o $@
+	$(CC) $(OBJS) $(CFLAGS) $(MINILIBX) $(LIBFT) -o $@
 
 $(DEBUG):
 	make all
-	$(CC) $(OBJS) $(CFLAGS_DEBUG) $(LIBFT) -o $(NAME)
+	$(CC) $(OBJS) $(CFLAGS_DEBUG) $(LIBFT) $(MINILIBX) -o $(NAME)
 
 
 all: $(NAME)
