@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:13:35 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 22:47:18 by taekklee         ###   ########.fr       */
+/*   Updated: 2023/07/02 02:56:49 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,12 @@ static int	ft_move_by_cpu(t_info *t_maps, int turn_cnt, int move)
 	num = ft_cal_move(t_maps, move);
 	if (1 <= num && num <= (int)t_maps->col)
 		return (num);
-	return (1 + rand() % (t_maps->col));
+	num = (1 + rand() % (t_maps->col));
+	if (t_maps->maps[1][num] != '0')
+	{
+		for(num = 1; num <= (int)t_maps->col; ++num)
+			if (t_maps->maps[1][num] == '0')
+				break ;
+	}
+	return (num);
 }

@@ -6,7 +6,7 @@
 /*   By: taekklee <taekklee@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 18:38:02 by taekklee          #+#    #+#             */
-/*   Updated: 2023/07/01 22:45:15 by taekklee         ###   ########.fr       */
+/*   Updated: 2023/07/02 03:10:27 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,9 @@ int	ft_cal_move(t_info *t_maps, int move)
 	int		num;
 	t_board	brd;
 
-	dprintf(2, "cal_move");
 	if (ft_init_board(&brd, t_maps) == -1)
 		return (-1);
 	num = ft_eval_board(&brd, move + '0', MAX_DEPTH, 1, t_maps->col);
-	dprintf(2, "num : %d\n", num);
-	for(size_t j = 0; j < brd.w; ++j)
-		dprintf(2, "%d ", brd.null_cnt[j]);
-	dprintf(2, "\n");
 
 	return (ft_free_board(&brd, num));
 }
@@ -54,35 +49,32 @@ static int	ft_eval_board(t_board *brd, char player, size_t depth, size_t left, s
 	size_t	j;
 	int		ret;
 	int		cand;
+	int		cand_cnt;
 
 	if (ft_is_over(brd, player == '1' ? '2' : '1'))
 		return (-1);
 	if (depth == 0)
 		return (0);
 	cand = 0;
+	cand_cnt = 0;
 	j = left;
 	while (j <= right)
 	{
-		ret = 0;
 		if (brd->null_cnt[j] > 0)
 		{
 			brd->map[brd->null_cnt[j]][j] = player;
 			--(brd->null_cnt[j]);
-			ret = ft_eval_board(brd, player == '1' ? '2' : '1', depth - 1, j - RANGE > 0 ? j - RANGE : 1, j + RANGE < brd->w ? j + RANGE : brd->w - 1);
-			brd->map[brd->null_cnt[j]][j] = '0';
+			ret = ft_eval_board(brd, player == '1' ? '2' : '1', depth - 1, j > RANGE ? j - RANGE : 1, j + RANGE < brd->w - 2 ? j + RANGE : brd->w - 2);
 			++(brd->null_cnt[j]);
+			brd->map[brd->null_cnt[j]][j] = '0';
 			if (ret == -1)
 				return (j);
-			if (ret > 0)
-			{
-				if (cand > 0)
-					return (-1);
-				cand = j;
-			}
+			if (ret == 0)
+				++cand_cnt, cand = j;
 		}
 		++j;
 	}
-	return (cand);
+	return (cand_cnt == 0 ? -1 : cand_cnt == 1 ? cand : 0);
 }
 
 static int	ft_is_over(t_board *brd, char c)
@@ -100,10 +92,12 @@ static int	ft_is_over(t_board *brd, char c)
 		j = 1;
 		while (j <= w)
 		{
-			if (c == brd->map[i][j] && ++cnt >= TARGET_LEN)
-				return (TRUE);
+			if (c == brd->map[i][j])
+				++cnt;
 			else
 				cnt = 0;
+			if (cnt == TARGET_LEN)
+				return (TRUE);
 			++j;
 		}
 		++i;
@@ -116,10 +110,12 @@ static int	ft_is_over(t_board *brd, char c)
 		i = 1;
 		while (i <= h)
 		{
-			if (c == brd->map[i][j] && ++cnt >= TARGET_LEN)
-				return (TRUE);
+			if (c == brd->map[i][j])
+				++cnt;
 			else
 				cnt = 0;
+			if (cnt == TARGET_LEN)
+				return (TRUE);
 			++i;
 		}
 		++j;
@@ -134,10 +130,12 @@ static int	ft_is_over(t_board *brd, char c)
 			i = 1 - d, j = 1;
 		for(;i <= h && j <= w; ++i, ++j)
 		{
-			if (c == brd->map[i][j] && ++cnt >= TARGET_LEN)
-				return (TRUE);
+			if (c == brd->map[i][j])
+				++cnt;
 			else
 				cnt = 0;
+			if (cnt == TARGET_LEN)
+				return (TRUE);
 		}
 	}
 
@@ -150,10 +148,12 @@ static int	ft_is_over(t_board *brd, char c)
 			i = d - w, j = w;
 		for(;i <= h && j >= 1; ++i, --j)
 		{
-			if (c == brd->map[i][j] && ++cnt >= TARGET_LEN)
-				return (TRUE);
+			if (c == brd->map[i][j])
+				++cnt;
 			else
 				cnt = 0;
+			if (cnt == TARGET_LEN)
+				return (TRUE);
 		}
 	}
 	return (FALSE);
