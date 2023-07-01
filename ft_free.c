@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 09:12:19 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 10:12:08 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 15:35:45 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ int	ft_free_double_pointer(t_info *t_maps)
 int	ft_free(t_info *t_maps)
 {
 	ft_free_double_pointer(t_maps);
-	return (0);
+	return (1);
 }

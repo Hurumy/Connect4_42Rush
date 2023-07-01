@@ -6,7 +6,7 @@
 #    By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/30 21:30:46 by komatsud          #+#    #+#              #
-#    Updated: 2023/07/01 14:55:53 by taekklee         ###   ########.fr        #
+#    Updated: 2023/07/01 16:09:54 by taekklee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRCS	= \
 			ft_is_game_ended.c \
 			ft_randomly_choose_first_move.c \
 			ft_show_result.c \
-
+			get_next_line.c \
+			get_next_line_utils.c \
 
 OBJS	= $(SRCS:.c=.o)
 

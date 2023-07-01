@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:17:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 14:09:15 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 16:37:21 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <limits.h>
 # include <stdio.h>
 # include "libft/libft.h"
-//# include "get_next_line.h"
 
 //////		**after add LIBFT, FIX PRINTF TO FT_PRINTF** 	//////
 
@@ -32,6 +31,9 @@
 # define CYAN    		"\033[36m"
 # define WHITE   		"\033[37m"
 # define GREY    		"\033[90m"
+
+# define PLAYER_MOVE (0)
+# define CPU_MOVE (1)
 
 //x ->col	y ->row
 //map[y][x], map[row][col];
@@ -51,6 +53,8 @@ typedef struct s_info
 
 //ft_init.c
 int		ft_init(int argc, char **argv, t_info *t_maps);
+int		ft_is_positive_num(char *str);
+int		ft_atoi_rewrite(char *str);
 
 //ft_randomly_choose_first_move.c
 int		ft_randomly_choose_first_move(t_info *t_maps);

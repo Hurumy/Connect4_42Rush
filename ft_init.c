@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 21:31:47 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 11:13:40 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 16:29:50 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ static int	ft_is_num(char c)
 	return (-1);
 }
 
-static int	ft_is_positive_num(char *str)
+int	ft_is_positive_num(char *str)
 {
 	int	i;
 	int	status;
 
+	if (str == NULL || *str == '\0')
+		return (-1);
 	i = 0;
 	status = 0;
-	while (status == 0 && str != NULL && str[i] != '\0')
+	while (status == 0 && str[i] != '\0')
 	{
 		status = ft_is_num(str[i]);
 		i ++;
@@ -39,21 +41,21 @@ static int	ft_is_positive_num(char *str)
 	return (0);
 }
 
-static int	ft_atoi_rewrite(char *str)
+int	ft_atoi_rewrite(char *str)
 {
 	int		i;
-	size_t	num;
+	int		num;
 
 	i = 0;
 	num = 0;
 	while (str[i] != '\0')
 	{
-		num = num * 10 + str[i] - '0';
-		if (num >= INT_MAX)
+		if (num > (INT_MAX - (str[i] - '0')) / 10)
 		{
 			ft_error();
 			return (-1);
 		}
+		num = num * 10 + str[i] - '0';
 		i ++;
 	}
 	return (num);
