@@ -6,7 +6,7 @@
 #    By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/30 21:30:46 by komatsud          #+#    #+#              #
-#    Updated: 2023/07/01 10:04:28 by komatsud         ###   ########.fr        #
+#    Updated: 2023/07/01 10:27:44 by komatsud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC		= cc
 
 RM		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
 
 SRCS	= *.c
 

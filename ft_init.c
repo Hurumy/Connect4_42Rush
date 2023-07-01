@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 21:31:47 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 10:11:47 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:13:40 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,13 +130,14 @@ int	ft_init(int argc, char **argv, t_info *t_maps)
 {
 	int	status;
 
+	printf(GREY"\nInitializing system ...\n"RESET_COLOR);
 	status = ft_arg_to_number(argc, argv, t_maps);
 	if (status == -1)
 	{
 		ft_error();
 		return (-1);
 	}
-	if (t_maps->col < 7 || t_maps->row < 6)
+	if (t_maps->col < 7 || t_maps->row < 6 || t_maps->col > 30 || t_maps->row > 30)
 	{
 		ft_error();
 		return (-1);
@@ -144,5 +145,6 @@ int	ft_init(int argc, char **argv, t_info *t_maps)
 	status = ft_malloc_maps(t_maps);
 	if (status == -1)
 		return (-1);
+	printf(GREY"Successfully Completed. Game Start.\n\n"RESET_COLOR);
 	return (0);
 }

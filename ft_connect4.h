@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:17:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 10:22:38 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:08:57 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 //# include "ft_printf.h"
 //# include "get_next_line.h"
 
+//////		**after add LIBFT, FIX PRINTF TO FT_PRINTF** 	//////
+
 //colors
 # define RESET_COLOR	"\033[0m"
 # define BLACK   		"\033[30m"
@@ -31,14 +33,12 @@
 # define CYAN    		"\033[36m"
 # define WHITE   		"\033[37m"
 # define GREY    		"\033[90m"
-# define PLAYER_PAWN	
-# define AI_PAWN		
 
 //x ->col	y ->row
 //map[y][x], map[row][col];
 //map[y][x] == 0 -> empty
-//map[y][x] == 1 ->first movers pawn
-//map[y][x] == 2 ->second movers pawn
+//map[y][x] == 1 ->Players pawn
+//map[y][x] == 2 ->AIs pawn
 //1 <= y <= row
 //1 <= x <= col
 typedef struct s_info
@@ -52,8 +52,14 @@ typedef struct s_info
 //ft_init.c
 int		ft_init(int argc, char **argv, t_info *t_maps);
 
-//ft_draw_fiels.c
+//ft_randomly_choose_first_move.c
+int		ft_randomly_choose_first_move(t_info *t_maps);
+
+//ft_draw_fields.c
 int		ft_draw_field(t_info *t_maps);
+
+//ft_add_pawn.c
+int		ft_add_pawn(t_info *t_maps, size_t x, int player);
 
 //ft_error.c
 void	ft_error(void);
