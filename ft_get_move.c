@@ -6,16 +6,18 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:13:35 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/02 09:45:14 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 22:47:18 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_connect4.h"
 #include "get_next_line.h"
+#include "ft_cal_move.h"
 
 static char	*ft_trim_str(char *line, const char *set);
 static int	ft_extract_number(char *line);
-int			ft_move_by_player();
+static int	ft_move_by_player(void);
+static int	ft_move_by_cpu(t_info *t_maps, int turn_cnt, int move);
 
 int	ft_get_move(t_info *t_maps)
 {
@@ -37,11 +39,11 @@ int	ft_get_move(t_info *t_maps)
 		else
 		{
 			ft_printf(CYAN"Turn %u.\nCPUs turn.\n"RESET_COLOR, turn_number);
-			where_to_put = ft_move_by_cpu(t_maps);
+			where_to_put = ft_move_by_cpu(t_maps, turn_number, move);
 		}
 		if (where_to_put == -1)
 			return (-1);
-		status = ft_add_pawn(t_maps, where_to_put, move + 1);
+		status = ft_add_pawn(t_maps, where_to_put, move);
 		if (status == 0)
 		{
 			move = (move == PLAYER_MOVE ? CPU_MOVE : PLAYER_MOVE);
@@ -95,7 +97,14 @@ int	ft_move_by_player(void)
 	return (num == -1 ? 0 : num);
 }
 
-int	ft_move_by_cpu(t_info *t_maps)
+static int	ft_move_by_cpu(t_info *t_maps, int turn_cnt, int move)
 {
+	int	num;
+
+	if (turn_cnt == 1)
+		return ((t_maps->col + 1) / 2);
+	num = ft_cal_move(t_maps, move);
+	if (1 <= num && num <= (int)t_maps->col)
+		return (num);
 	return (1 + rand() % (t_maps->col));
 }

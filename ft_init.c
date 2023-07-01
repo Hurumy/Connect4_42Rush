@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 21:31:47 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 17:09:22 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 22:19:07 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_atoi_rewrite(char *str)
 	num = 0;
 	while (str[i] != '\0')
 	{
-		if (num > (INT_MAX - (str[i] - '0')) / 10)
+		if (num > (INT_MAX / 2 - (str[i] - '0')) / 10)
 		{
 			return (-1);
 		}

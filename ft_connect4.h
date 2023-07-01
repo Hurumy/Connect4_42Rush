@@ -35,8 +35,8 @@
 # define D_KEY			2
 # define F_KEY			3
 
-# define PLAYER_MOVE (0)
-# define CPU_MOVE (1)
+# define PLAYER_MOVE (1)
+# define CPU_MOVE (2)
 
 //x ->col	y ->row
 //map[y][x], map[row][col];

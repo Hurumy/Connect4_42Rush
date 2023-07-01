@@ -29,6 +29,7 @@ SRCS	= \
 			ft_exit.c \
 			ft_free.c \
 			ft_get_move.c \
+			ft_cal_move.c \
 			ft_init.c \
 			ft_is_game_ended.c \
 			ft_randomly_choose_first_move.c \
