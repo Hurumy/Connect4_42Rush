@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:17:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 11:56:17 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 14:09:15 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ int		ft_add_pawn(t_info *t_maps, size_t x, int player);
 
 //ft_is_game_ended.c
 int		ft_is_game_ended(t_info *t_maps, int turn_number, int where_to_put);
+
+//ft_show_result.c
+int		ft_show_result(t_info *t_maps);
 
 //ft_error.c
 void	ft_error(void);
