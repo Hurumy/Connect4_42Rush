@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:17:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 11:33:57 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:56:17 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 //x ->col	y ->row
 //map[y][x], map[row][col];
 //map[y][x] == 0 -> empty
-//map[y][x] == 1 ->Players pawn
-//map[y][x] == 2 ->AIs pawn
+//map[y][x] == 1 -> Players pawn
+//map[y][x] == 2 -> AIs pawn
 //1 <= y <= row
 //1 <= x <= col
 typedef struct s_info
@@ -47,7 +47,7 @@ typedef struct s_info
 	size_t	row;
 	char	**maps;
 	int		first_move;
-	int		result;
+	int		winner;
 }	t_info;
 
 //ft_init.c
@@ -64,6 +64,9 @@ int		ft_get_move(t_info *t_maps);
 
 //ft_add_pawn.c
 int		ft_add_pawn(t_info *t_maps, size_t x, int player);
+
+//ft_is_game_ended.c
+int		ft_is_game_ended(t_info *t_maps, int turn_number, int where_to_put);
 
 //ft_error.c
 void	ft_error(void);
