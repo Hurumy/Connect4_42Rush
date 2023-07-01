@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 21:31:47 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 09:58:19 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 10:11:47 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	ft_malloc_maps(t_info *t_maps)
 		t_maps->maps[i] = malloc(sizeof(char) * (t_maps->col + 2));
 		if (t_maps->maps[i] == NULL)
 		{
-			ft_free_double_pointer(t_maps->maps);
+			ft_free_double_pointer(t_maps);
 			ft_error();
 			return (-1);
 		}

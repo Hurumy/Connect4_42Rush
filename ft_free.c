@@ -6,33 +6,32 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 09:12:19 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 09:27:03 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 10:12:08 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_connect4.h"
 
-int	ft_free_double_pointer(char **map)
+int	ft_free_double_pointer(t_info *t_maps)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	if (map == NULL)
+	if (t_maps->maps == NULL)
 		return (0);
-	while (1)
+	while (i < t_maps->row + 2)
 	{
-		if (map[i] == NULL)
+		if (t_maps->maps[i] == NULL)
 			break ;
-		free(map[i]);
+		free(t_maps->maps[i]);
 		i ++;
 	}
-	free (map);
+	free (t_maps->maps);
 	return (0);
 }
 
-
 int	ft_free(t_info *t_maps)
 {
-	ft_free_double_pointer(t_maps->maps);
+	ft_free_double_pointer(t_maps);
 	return (0);
 }
