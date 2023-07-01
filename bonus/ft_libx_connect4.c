@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:40:19 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 19:02:58 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 19:35:49 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main_libx(int argc, char **argv)
 	}
 	ft_draw_field_libx(&t_maps);
 	mlx_hook(t_maps.window, 02, 1L << 0, ft_set_keyhook, (void *)&t_maps);
-	//mlx_loop_hook(t_maps.window, ft_get_move_libx, (void *)&t_maps);
 	mlx_loop(t_maps.screen);
 	return (0);
 }

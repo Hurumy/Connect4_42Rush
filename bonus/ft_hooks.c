@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:43:37 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 19:03:42 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 19:35:32 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_move_right(t_info *t_maps)
 
 int	ft_decide(t_info *t_maps)
 {
-	int 		where_to_put;
+	int			where_to_put;
 	int			status;
 	static int	turn_number = 0;
 

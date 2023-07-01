@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:39:34 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 18:58:56 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 19:35:02 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_get_move_libx(t_info *t_maps)
 	int		status;
 	size_t	turn_number;
 	int		move;
-	//int		where_to_put;
 
 	turn_number = 1;
 	status = 0;
