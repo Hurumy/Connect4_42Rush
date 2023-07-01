@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:17:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 17:19:59 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 18:29:10 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define CYAN    		"\033[36m"
 # define WHITE   		"\033[37m"
 # define GREY    		"\033[90m"
+# define A_KEY			0
+# define S_KEY			1
+# define D_KEY			2
 
 # define PLAYER_MOVE (0)
 # define CPU_MOVE (1)
@@ -56,6 +59,8 @@ typedef struct s_info
 	void	*tip_player;
 	void	*tip_cpu;
 	void	*tip_cursor;
+	void	*tip_base;
+	int		cursor;
 }	t_info;
 
 //ft_init.c
@@ -77,6 +82,7 @@ int		ft_draw_field(t_info *t_maps);
 
 //ft_get_move.c
 int		ft_get_move(t_info *t_maps);
+int		ft_move_by_cpu(t_info *t_maps);
 
 //ft_add_pawn.c
 int		ft_add_pawn(t_info *t_maps, size_t x, int player);
@@ -108,7 +114,14 @@ int		ft_init_libx(int argc, char **argv, t_info *t_maps);
 int		ft_arg_to_number_libx(int argc, char **argv, t_info *t_maps);
 
 //ft_draw_tiles.c
+int		ft_put_img(t_info *t_maps, char map, size_t x, size_t y);
 int		ft_draw_field_libx(t_info *t_maps);
+
+//ft_get_move_libx.c
+int		ft_get_move_libx(t_info *t_maps);
+
+//ft_hooks.c
+int		ft_set_keyhook(int keycode, t_info *t_maps);
 
 //ft_free_libx.c
 int		ft_free_libx(t_info *t_maps);

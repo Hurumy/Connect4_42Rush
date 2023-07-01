@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:46:54 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 16:35:26 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 18:31:56 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static int	ft_load_maptiles(t_info *t_maps)
 	t_maps->tip_empty = mlx_png_file_to_image(t_maps->screen, "bonus/tiles/empty.png", &n, &n);
 	t_maps->tip_player = mlx_png_file_to_image(t_maps->screen, "bonus/tiles/player.png", &n, &n);
 	t_maps->tip_cpu = mlx_png_file_to_image(t_maps->screen, "bonus/tiles/cpu.png", &n, &n);
-	if (!t_maps->tip_cursor || !t_maps->tip_empty || !t_maps->tip_player || !t_maps->tip_cpu)
+	t_maps->tip_base = mlx_png_file_to_image(t_maps->screen, "bonus/tiles/base.png", &n, &n);
+	if (!t_maps->tip_cursor || !t_maps->tip_empty || !t_maps->tip_player || !t_maps->tip_cpu || !t_maps->tip_base)
 		return (-1);
 	return (0);
 }
@@ -120,7 +121,7 @@ int	ft_init_libx(int argc, char **argv, t_info *t_maps)
 	status = ft_malloc_maps_libx(t_maps);
 	if (status == -1)
 		return (-1);
-	t_maps->window = mlx_new_window(t_maps->screen, 49 * (int)t_maps->col, 49 * (int)t_maps->row, "42_CONNECT_4");
+	t_maps->window = mlx_new_window(t_maps->screen, 49 * (int)t_maps->col, 49 * ((int)t_maps->row + 1), "42_CONNECT_4");
 	ft_printf(GREY"LIBX: Successfully Completed. Game Start.\n\n"RESET_COLOR);
 	return (0);
 }

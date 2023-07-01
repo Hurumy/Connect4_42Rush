@@ -6,7 +6,7 @@
 #    By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/30 21:30:46 by komatsud          #+#    #+#              #
-#    Updated: 2023/07/01 16:46:30 by komatsud         ###   ########.fr        #
+#    Updated: 2023/07/01 18:04:38 by komatsud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS	= \
 			bonus/ft_hooks.c \
 			bonus/ft_init_libx.c \
 			bonus/ft_libx_connect4.c \
+			bonus/ft_getmove_libx.c \
 
 OBJS	= $(SRCS:.c=.o)
 

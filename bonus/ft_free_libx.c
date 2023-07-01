@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:56:53 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 16:41:38 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 18:30:21 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	ft_free_libx(t_info *t_maps)
 	mlx_destroy_image(t_maps->screen, t_maps->tip_player);
 	mlx_destroy_image(t_maps->screen, t_maps->tip_cpu);
 	mlx_destroy_image(t_maps->screen, t_maps->tip_cursor);
+	mlx_destroy_image(t_maps->screen, t_maps->tip_base);
 	mlx_destroy_window(t_maps->screen, t_maps->window);
 	ft_free_double_pointer_libx(t_maps);
 	return (0);
