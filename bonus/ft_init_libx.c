@@ -1,72 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   ft_init_libx.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 21:31:47 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 16:46:28 by komatsud         ###   ########.fr       */
+/*   Created: 2023/07/01 14:46:54 by komatsud          #+#    #+#             */
+/*   Updated: 2023/07/01 16:35:26 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_connect4.h"
+#include "../ft_connect4.h"
 
-int	ft_is_num(char c)
+static int	ft_load_maptiles(t_info *t_maps)
 {
-	if ('0' <= c && c <= '9')
-		return (0);
-	return (-1);
-}
+	int	n = 49;
 
-int	ft_is_positive_num(char *str)
-{
-	int	i;
-	int	status;
-
-	if (str == NULL || *str == '\0')
+	t_maps->tip_cursor = mlx_png_file_to_image(t_maps->screen, "bonus/tiles/cursor.png", &n, &n);
+	t_maps->tip_empty = mlx_png_file_to_image(t_maps->screen, "bonus/tiles/empty.png", &n, &n);
+	t_maps->tip_player = mlx_png_file_to_image(t_maps->screen, "bonus/tiles/player.png", &n, &n);
+	t_maps->tip_cpu = mlx_png_file_to_image(t_maps->screen, "bonus/tiles/cpu.png", &n, &n);
+	if (!t_maps->tip_cursor || !t_maps->tip_empty || !t_maps->tip_player || !t_maps->tip_cpu)
 		return (-1);
-	i = 0;
-	status = 0;
-	while (status == 0 && str[i] != '\0')
-	{
-		status = ft_is_num(str[i]);
-		i ++;
-	}
-	if (status == -1)
-	{
-		ft_error();
-		return (-1);
-	}
 	return (0);
 }
 
-int	ft_atoi_rewrite(char *str)
-{
-	int		i;
-	int		num;
-
-	i = 0;
-	num = 0;
-	while (str[i] != '\0')
-	{
-		if (num > (INT_MAX - (str[i] - '0')) / 10)
-		{
-			ft_error();
-			return (-1);
-		}
-		num = num * 10 + str[i] - '0';
-		i ++;
-	}
-	return (num);
-}
-
-int	ft_arg_to_number(int argc, char **argv, t_info *t_maps)
+int	ft_arg_to_number_libx(int argc, char **argv, t_info *t_maps)
 {
 	int		status;
 
 	status = 0;
-	if (argc != 3)
+	if (argc != 4)
 		return (-1);
 	status = ft_is_positive_num(argv[1]);
 	if (status == -1)
@@ -79,7 +43,7 @@ int	ft_arg_to_number(int argc, char **argv, t_info *t_maps)
 	return (0);
 }
 
-int	ft_init_map_row(t_info *t_maps, size_t y)
+int	ft_init_map_row_libx(t_info *t_maps, size_t y)
 {
 	size_t	x;
 	int		mode;
@@ -98,7 +62,7 @@ int	ft_init_map_row(t_info *t_maps, size_t y)
 	return (0);
 }
 
-int	ft_malloc_maps(t_info *t_maps)
+int	ft_malloc_maps_libx(t_info *t_maps)
 {
 	size_t	i;
 
@@ -118,22 +82,19 @@ int	ft_malloc_maps(t_info *t_maps)
 			ft_error();
 			return (-1);
 		}
-		ft_init_map_row(t_maps, i);
+		ft_init_map_row_libx(t_maps, i);
 		i ++;
 	}
 	return (0);
 }
 
-//convert arg into number
-//check args validity
-//malloc maps
-//init maps
-int	ft_init(int argc, char **argv, t_info *t_maps)
+
+int	ft_init_libx(int argc, char **argv, t_info *t_maps)
 {
 	int	status;
 
-	ft_printf(GREY"\nInitializing system ...\n"RESET_COLOR);
-	status = ft_arg_to_number(argc, argv, t_maps);
+	ft_printf(GREY"\nLIBX: Initializing system ...\n"RESET_COLOR);
+	status = ft_arg_to_number_libx(argc, argv, t_maps);
 	if (status == -1)
 	{
 		ft_error();
@@ -144,9 +105,22 @@ int	ft_init(int argc, char **argv, t_info *t_maps)
 		ft_error();
 		return (-1);
 	}
-	status = ft_malloc_maps(t_maps);
+	t_maps->screen = mlx_init();
+	if (t_maps->screen == NULL)
+	{
+		ft_error();
+		return (-1);
+	}
+	status = ft_load_maptiles(t_maps);
+	if (status == -1)
+	{
+		ft_error_with_free_libx(t_maps);
+		return (-1);
+	}
+	status = ft_malloc_maps_libx(t_maps);
 	if (status == -1)
 		return (-1);
-	ft_printf(GREY"Successfully Completed. Game Start.\n\n"RESET_COLOR);
+	t_maps->window = mlx_new_window(t_maps->screen, 49 * (int)t_maps->col, 49 * (int)t_maps->row, "42_CONNECT_4");
+	ft_printf(GREY"LIBX: Successfully Completed. Game Start.\n\n"RESET_COLOR);
 	return (0);
 }

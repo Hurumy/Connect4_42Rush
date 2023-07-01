@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_connect4.c                                      :+:      :+:    :+:   */
+/*   ft_libx_connect4.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 20:10:52 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 16:46:27 by komatsud         ###   ########.fr       */
+/*   Created: 2023/07/01 14:40:19 by komatsud          #+#    #+#             */
+/*   Updated: 2023/07/01 16:43:11 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_connect4.h"
+#include "../ft_connect4.h"
 
-//init, get infos, decide which one to play first
-int	main(int argc, char **argv)
+int	main_libx(int argc, char **argv)
 {
 	int		status;
 	t_info	t_maps;
 
-	if (argc == 4)
-	{
-		main_libx(argc, argv);
-		return (0);
-	}
-	status = ft_init(argc, argv, &t_maps);
+	status = ft_init_libx(argc, argv, &t_maps);
 	if (status == -1)
-		return (ft_free(&t_maps));
+		return (-1);
 	ft_randomly_choose_first_move(&t_maps);
-	ft_draw_field(&t_maps);
-	status = ft_get_move(&t_maps);
-	if (status == -1)
-		return (ft_free(&t_maps));
-	printf("%d\n", t_maps.winner);
-	ft_show_result(&t_maps);
-	ft_exit(&t_maps);
+	ft_draw_field_libx(&t_maps);
+	//mlx_hook(p_win->window, 2, 1L << 0, ft_set_keyhook, p_win);
+	//mlx_hook(p_win->window, 17, 1L << 17, ft_set_mousehook, p_win);
+	mlx_loop(t_maps.screen);
 	return (0);
 }

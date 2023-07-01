@@ -6,7 +6,7 @@
 #    By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/30 21:30:46 by komatsud          #+#    #+#              #
-#    Updated: 2023/07/01 16:09:54 by taekklee         ###   ########.fr        #
+#    Updated: 2023/07/01 16:46:30 by komatsud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,16 @@ SRCS	= \
 			ft_show_result.c \
 			get_next_line.c \
 			get_next_line_utils.c \
+			bonus/ft_draw_tiles.c \
+			bonus/ft_error_libx.c \
+			bonus/ft_free_libx.c \
+			bonus/ft_hooks.c \
+			bonus/ft_init_libx.c \
+			bonus/ft_libx_connect4.c \
 
 OBJS	= $(SRCS:.c=.o)
+
+MINILIBX	=	libmlx.dylib
 
 LIBFT_DIR	=	./libft
 LIBFT		=	$(LIBFT_DIR)/libft.a
@@ -47,11 +55,11 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) $(LIBFT) -o $@
+	$(CC) $(OBJS) $(CFLAGS) $(MINILIBX) $(LIBFT) -o $@
 
 $(DEBUG):
 	make all
-	$(CC) $(OBJS) $(CFLAGS_DEBUG) $(LIBFT) -o $(NAME)
+	$(CC) $(OBJS) $(CFLAGS_DEBUG) $(LIBFT) $(MINILIBX) -o $(NAME)
 
 $(LIBFT): FORCE
 	@make -C $(LIBFT_DIR) all
