@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:17:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 11:08:57 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:33:57 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_info
 	size_t	row;
 	char	**maps;
 	int		first_move;
+	int		result;
 }	t_info;
 
 //ft_init.c
@@ -57,6 +58,9 @@ int		ft_randomly_choose_first_move(t_info *t_maps);
 
 //ft_draw_fields.c
 int		ft_draw_field(t_info *t_maps);
+
+//ft_get_move.c
+int		ft_get_move(t_info *t_maps);
 
 //ft_add_pawn.c
 int		ft_add_pawn(t_info *t_maps, size_t x, int player);

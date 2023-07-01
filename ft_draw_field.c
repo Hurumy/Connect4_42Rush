@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 09:45:03 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 10:26:44 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:27:33 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	ft_draw_field(t_info *t_maps)
 	size_t	i;
 
 	y = 1;
-	t_maps->maps[5][5] = '1';
-	t_maps->maps[6][6] = '2';
 	printf("\n");
 	while (y < t_maps->row + 1)
 	{
