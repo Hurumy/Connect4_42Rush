@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 21:31:47 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 16:46:28 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 17:09:22 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	ft_atoi_rewrite(char *str)
 	{
 		if (num > (INT_MAX - (str[i] - '0')) / 10)
 		{
-			ft_error();
 			return (-1);
 		}
 		num = num * 10 + str[i] - '0';
@@ -74,8 +73,14 @@ int	ft_arg_to_number(int argc, char **argv, t_info *t_maps)
 	status = ft_is_positive_num(argv[2]);
 	if (status == -1)
 		return (-1);
-	t_maps->row = ft_atoi_rewrite(argv[1]);
-	t_maps->col = ft_atoi_rewrite(argv[2]);
+	status = ft_atoi_rewrite(argv[1]);
+	if (status == -1)
+		return (-1);
+	t_maps->row = status;
+	status = ft_atoi_rewrite(argv[2]);
+	if (status == -1)
+		return (-1);
+	t_maps->col = status;
 	return (0);
 }
 

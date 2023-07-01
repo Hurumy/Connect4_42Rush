@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 11:40:11 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 14:05:00 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/01 17:24:25 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static int	ft_search_4cnct(t_info *t_maps, int x)
 	}
 	while (1) // left downer
 	{
-		if (q < 1 || p < t_maps->row || t_maps->maps[p][q] != pawn)
+		if (q < 1 || p > t_maps->row || t_maps->maps[p][q] != pawn)
 		{
 			q = x;
 			p = y;
