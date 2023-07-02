@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:17:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/02 09:44:16 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/02 13:27:55 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <stdio.h>
 # include <mlx.h>
 # include "libft/libft.h"
-
-//////		**after add LIBFT, FIX PRINTF TO FT_PRINTF** 	//////
 
 //colors
 # define RESET_COLOR	"\033[0m"
@@ -106,7 +104,6 @@ int		ft_free(t_info *t_maps);
 
 //ft_exit.c
 int		ft_exit(t_info *t_maps);
-
 
 //bonus
 //ft_libx_connect4.c

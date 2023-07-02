@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:40:19 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/02 10:25:38 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/02 13:16:44 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,23 @@ int	main_libx(int argc, char **argv)
 	t_maps.cursor = 1;
 	t_maps.input_mode = 0;
 	ft_randomly_choose_first_move(&t_maps);
-	if (t_maps.first_move == CPU_MOVE)
+	status = 1;
+	while (t_maps.first_move == CPU_MOVE && status == 1)
 	{
 		ft_printf(CYAN"\nTurn 1.\nCPUs turn.\n"RESET_COLOR);
 		status = ft_add_pawn(&t_maps, 1, CPU_MOVE + 1);
-		ft_draw_field_libx(&t_maps);
+		if (status != 1)
+		{
+			status = ft_draw_field_libx(&t_maps);
+			if (status == -1)
+				return (-1);
+			else if (status == 0)
+				break ;
+		}
 	}
-	ft_draw_field_libx(&t_maps);
+	status = ft_draw_field_libx(&t_maps);
+	if (status == -1)
+		return (-1);
 	mlx_hook(t_maps.window, 02, 1L << 0, ft_set_keyhook, (void *)&t_maps);
 	mlx_loop(t_maps.screen);
 	return (0);

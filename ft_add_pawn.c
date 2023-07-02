@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 10:27:22 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 11:16:28 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/02 13:31:50 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 /* ## RETURN VALUE ## */
 //can not put, retry hearing -> 1
 //can put -> 0 (then draw)
-//another critical error -> -1 (sadly... session ends)
 int	ft_add_pawn(t_info *t_maps, size_t x, int player)
 {
 	size_t	y;

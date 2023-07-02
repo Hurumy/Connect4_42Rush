@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 11:40:11 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 17:24:25 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/02 13:35:22 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	ft_search_4cnct(t_info *t_maps, int x)
 	int		i;
 	char	pawn;
 
+	pawn = '\0';
 	if (x < 1 || x > (int)t_maps->col)
 		return (0);
 	y = 1;
@@ -33,6 +34,8 @@ static int	ft_search_4cnct(t_info *t_maps, int x)
 			break ;
 		}
 	}
+	if (pawn == '\0' || pawn == '0')
+		return (0);
 	p = y;
 	q = x;
 	i = 0;
@@ -168,12 +171,7 @@ int	ft_is_game_ended(t_info *t_maps, int turn_number, int where_to_put)
 	int	status;
 
 	status = ft_search_4cnct(t_maps, where_to_put);
-	if (status == -1)
-	{
-		ft_error_with_free(t_maps);
-		return (-1);
-	}
-	else if (status == 1)
+	if (status == 1)
 		return (1);
 	if (turn_number > (int)(t_maps->col * t_maps->row))
 	{
