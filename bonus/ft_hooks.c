@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:43:37 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/02 18:19:56 by taekklee         ###   ########.fr       */
+/*   Updated: 2023/07/02 20:29:36 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,13 +171,13 @@ int	ft_set_keyhook(int keycode, t_info *t_maps)
 		ft_move_right(t_maps);
 	else if (keycode == S_KEY)
 		ft_decide(t_maps);
-	else if (keycode == F_KEY)
-	{
-		if (t_maps->input_mode == 0)
-		{
-			t_maps->input_mode = 1;
-			ft_printf("change input mode this turn. Press S key on the window.\n");
-		}
-	}
+	// else if (keycode == F_KEY)
+	// {
+	// 	if (t_maps->input_mode == 0)
+	// 	{
+	// 		t_maps->input_mode = 1;
+	// 		ft_printf("change input mode this turn. Press S key on the window.\n");
+	// 	}
+	// }
 	return (0);
 }
