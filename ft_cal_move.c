@@ -6,7 +6,7 @@
 /*   By: taekklee <taekklee@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 18:38:02 by taekklee          #+#    #+#             */
-/*   Updated: 2023/07/02 03:10:27 by taekklee         ###   ########.fr       */
+/*   Updated: 2023/07/02 16:00:19 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,51 @@
 #include "ft_cal_move.h"
 
 static int	ft_init_board(t_board *brd, t_info *t_maps);
-static int	ft_eval_board(t_board *brd, char player, size_t depth, size_t left, size_t right);
+static int	ft_eval_board(t_board *brd, char player, int depth, int left, int right);
 static int	ft_is_over(t_board *brd, char c);
 static void	ft_cal_null_cnt(t_board *brd);
 static char	**ft_copy_map(char **strs, size_t h, size_t w);
 static int	ft_free_board(t_board *brd, int ret);
 
+/* void	print_map(t_board *brd) */
+/* { */
+/* 	for(int i = 1; i <= (int)brd->h - 2; ++i) */
+/* 		printf("%s\n", brd->map[i] + 1); */
+/* } */
+
 int	ft_cal_move(t_info *t_maps, int move)
 {
-	int		num;
 	t_board	brd;
 
 	if (ft_init_board(&brd, t_maps) == -1)
 		return (-1);
-	num = ft_eval_board(&brd, move + '0', MAX_DEPTH, 1, t_maps->col);
-
+	char player = move + '0';
+	char opp_player = (CPU_MOVE + PLAYER_MOVE - move) + '0';
+	int num = 0;
+	int left = 1, right = (int)t_maps->col;
+	for (int eval, j = left; j <= right; ++j)
+	{
+		if (brd.null_cnt[j] == 0)
+			continue;
+		brd.map[brd.null_cnt[j]][j] = player;
+		--(brd.null_cnt[j]);
+		eval = ft_eval_board(&brd, opp_player, MAX_DEPTH, left, right);
+		++(brd.null_cnt[j]);
+		brd.map[brd.null_cnt[j]][j] = '0';
+		/* printf("j : %d , eval : %d\n", j, eval); */
+		if (eval == -1)
+		{
+			num = j;
+			break ;
+		}
+		if (eval == 0)
+			brd.cand_arr[brd.cand_sz++] = j;
+	}
+	/* printf("num : %d, brd.cand_sz : %zu \n", num, brd.cand_sz); */
+	if (num == 0)
+		num = brd.cand_sz == 0 ?
+			1 + rand() % t_maps->col :
+			brd.cand_arr[rand() % brd.cand_sz];
 	return (ft_free_board(&brd, num));
 }
 
@@ -36,45 +66,40 @@ static int	ft_init_board(t_board *brd, t_info *t_maps)
 {
 	brd->h = t_maps->row + 2;
 	brd->w = t_maps->col + 2;
+	brd->cand_sz = 0;
 	brd->map = ft_copy_map(t_maps->maps, brd->h, brd->w);
 	brd->null_cnt = (int *)ft_calloc(brd->w, sizeof(int));
-	if (brd->map == NULL || brd->null_cnt == NULL)
+	brd->cand_arr = (int *)ft_calloc(brd->w, sizeof(int));
+	if (brd->map == NULL || brd->null_cnt == NULL || brd->cand_arr == NULL)
 		return (ft_free_board(brd, -1));
 	ft_cal_null_cnt(brd);
 	return (0);
 }
 
-static int	ft_eval_board(t_board *brd, char player, size_t depth, size_t left, size_t right)
+static int	ft_eval_board(t_board *brd, char player, int depth, int left, int right)
 {
-	size_t	j;
-	int		ret;
-	int		cand;
-	int		cand_cnt;
-
 	if (ft_is_over(brd, player == '1' ? '2' : '1'))
 		return (-1);
 	if (depth == 0)
 		return (0);
-	cand = 0;
-	cand_cnt = 0;
-	j = left;
-	while (j <= right)
+	int cand_cnt = 0, cand_all = 0;
+	for (int eval, j = left; j <= right; ++j)
 	{
-		if (brd->null_cnt[j] > 0)
-		{
-			brd->map[brd->null_cnt[j]][j] = player;
-			--(brd->null_cnt[j]);
-			ret = ft_eval_board(brd, player == '1' ? '2' : '1', depth - 1, j > RANGE ? j - RANGE : 1, j + RANGE < brd->w - 2 ? j + RANGE : brd->w - 2);
-			++(brd->null_cnt[j]);
-			brd->map[brd->null_cnt[j]][j] = '0';
-			if (ret == -1)
-				return (j);
-			if (ret == 0)
-				++cand_cnt, cand = j;
-		}
-		++j;
+		if (brd->null_cnt[j] == 0)
+			continue;
+		brd->map[brd->null_cnt[j]][j] = player;
+		--(brd->null_cnt[j]);
+		eval = ft_eval_board(brd, player == '1' ? '2' : '1', depth - 1, left, right);
+		++(brd->null_cnt[j]);
+		brd->map[brd->null_cnt[j]][j] = '0';
+		if (eval == -1)
+			return (1);
+		cand_cnt += eval;
+		++cand_all;
 	}
-	return (cand_cnt == 0 ? -1 : cand_cnt == 1 ? cand : 0);
+	if (cand_cnt == cand_all)
+		return (-1);
+	return (0);
 }
 
 static int	ft_is_over(t_board *brd, char c)
@@ -213,5 +238,7 @@ static int	ft_free_board(t_board *brd, int ret)
 	}
 	if (brd->null_cnt != NULL)
 		free(brd->null_cnt);
+	if (brd->cand_arr != NULL)
+		free(brd->cand_arr);
 	return (ret);
 }
