@@ -6,11 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:40:19 by komatsud          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/07/02 17:45:56 by komatsud         ###   ########.fr       */
-=======
-/*   Updated: 2023/07/02 18:20:20 by taekklee         ###   ########.fr       */
->>>>>>> 537f04b ([update] search depth for various size)
+/*   Updated: 2023/07/02 19:44:11 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +47,7 @@ int	main_libx(int argc, char **argv)
 	if (status == -1)
 		return (-1);
 	mlx_hook(t_maps.window, 02, 1L << 0, ft_set_keyhook, (void *)&t_maps);
-	mlx_hook(t_maps.window, 17, 0, exit_wind, (void *)&t_maps);
+	mlx_hook(t_maps.window, 17, 1L << 0, exit_wind, (void *)&t_maps);
 	mlx_loop(t_maps.screen);
 	return (0);
 }
