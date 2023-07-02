@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:43:37 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/02 10:15:12 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/02 17:03:01 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,21 @@ int	ft_decide(t_info *t_maps)
 	int			where_to_put;
 	int			status;
 	static int	turn_number = 1;
+	int			move;
 
+	move = t_maps->first_move;
 	status = 1;
 	if (t_maps->first_move == CPU_MOVE && turn_number == 1)
-		turn_number ++;
+		turn_number ++, move = CPU_MOVE + PLAYER_MOVE - move;
 	while (status == 1)
 	{
 		ft_printf(CYAN"\nTurn %u.\nPlayers turn.\n"RESET_COLOR, turn_number);
 		if (t_maps->input_mode == 0)
 		{
-			status = ft_add_pawn(t_maps, t_maps->cursor, PLAYER_MOVE + 1);
+			status = ft_add_pawn(t_maps, t_maps->cursor, PLAYER_MOVE);
 			if (status == 0)
 			{
-				turn_number ++;
+				turn_number ++, move = CPU_MOVE + PLAYER_MOVE - move;
 				ft_draw_field_libx(t_maps);
 				status = ft_is_game_ended(t_maps, turn_number, t_maps->cursor);
 				if (status == -1)
@@ -82,10 +84,12 @@ int	ft_decide(t_info *t_maps)
 		{
 			ft_printf(CYAN"Please input from the shell this turn\n\n"RESET_COLOR);
 			where_to_put = ft_move_by_player();
-			status = ft_add_pawn(t_maps, where_to_put, PLAYER_MOVE + 1);
+			if (where_to_put == -1)
+				return (-1);
+			status = ft_add_pawn(t_maps, where_to_put, PLAYER_MOVE);
 			if (status == 0)
 			{
-				turn_number ++;
+				turn_number ++, move = CPU_MOVE + PLAYER_MOVE - move;
 				t_maps->input_mode = 0;
 				ft_draw_field_libx(t_maps);
 				status = ft_is_game_ended(t_maps, turn_number, where_to_put);
@@ -117,11 +121,11 @@ int	ft_decide(t_info *t_maps)
 	while (status == 1)
 	{
 		ft_printf(CYAN"Turn %u.\nCPUs turn.\n"RESET_COLOR, turn_number);
-		where_to_put = 1 + rand() % (t_maps->col);
-		status = ft_add_pawn(t_maps, where_to_put, CPU_MOVE + 1);
+		where_to_put = ft_move_by_cpu(t_maps, turn_number, move);
+		status = ft_add_pawn(t_maps, where_to_put, CPU_MOVE);
 		if (status == 0)
 		{
-			turn_number ++;
+			turn_number ++, move = CPU_MOVE + PLAYER_MOVE - move;
 			ft_draw_field_libx(t_maps);
 			status = ft_is_game_ended(t_maps, turn_number, where_to_put);
 			if (status == -1)
