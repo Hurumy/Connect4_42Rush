@@ -6,24 +6,37 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:10:52 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 16:59:49 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/02 17:59:09 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_connect4.h"
 
-int	ft_fill_with_null(t_info *t_maps)
+static void	ft_fill_with_null(t_info *t_maps)
 {
+	t_maps->col = 0;
+	t_maps->row = 0;
 	t_maps->maps = NULL;
-	return (0);
+	t_maps->first_move = 0;
+	t_maps->winner = 0;
+	t_maps->screen = NULL;
+	t_maps->window = NULL;
+	t_maps->tip_empty = NULL;
+	t_maps->tip_player = NULL;
+	t_maps->tip_cpu = NULL;
+	t_maps->tip_cursor = NULL;
+	t_maps->tip_base = NULL;
+	t_maps->cursor = 0;
+	t_maps->input_mode = 0;
 }
 
 //init, get infos, decide which one to play first
 int	main(int argc, char **argv)
 {
 	int		status;
-	t_info	t_maps = {0};
+	t_info	t_maps;
 
+	ft_fill_with_null(&t_maps);
 	if (argc == 4)
 	{
 		main_libx(argc, argv);
