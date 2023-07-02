@@ -6,13 +6,14 @@
 /*   By: taekklee <taekklee@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 20:57:18 by taekklee          #+#    #+#             */
-/*   Updated: 2023/07/01 13:10:44 by taekklee         ###   ########.fr       */
+/*   Updated: 2023/07/02 19:24:05 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <stdint.h>
 # include <stdlib.h>
 # include <limits.h>
 # include <errno.h>
