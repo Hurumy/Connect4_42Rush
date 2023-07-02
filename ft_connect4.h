@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:17:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/02 13:27:55 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/02 16:13:17 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ int		ft_draw_field(t_info *t_maps);
 
 //ft_get_move.c
 int		ft_get_move(t_info *t_maps);
-int		ft_move_by_cpu(t_info *t_maps);
 int		ft_move_by_player(void);
+int		ft_move_by_cpu(t_info *t_maps, int turn_cnt, int move);
 
 //ft_add_pawn.c
 int		ft_add_pawn(t_info *t_maps, size_t x, int player);

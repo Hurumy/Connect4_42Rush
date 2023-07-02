@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:13:35 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/02 15:09:51 by taekklee         ###   ########.fr       */
+/*   Updated: 2023/07/02 16:12:21 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 
 static char	*ft_trim_str(char *line, const char *set);
 static int	ft_extract_number(char *line);
-static int	ft_move_by_player(void);
-static int	ft_move_by_cpu(t_info *t_maps, int turn_cnt, int move);
 
 int	ft_get_move(t_info *t_maps)
 {
@@ -97,7 +95,7 @@ int	ft_move_by_player(void)
 	return (num == -1 ? 0 : num);
 }
 
-static int	ft_move_by_cpu(t_info *t_maps, int turn_cnt, int move)
+int	ft_move_by_cpu(t_info *t_maps, int turn_cnt, int move)
 {
 	int	num;
 
@@ -107,10 +105,4 @@ static int	ft_move_by_cpu(t_info *t_maps, int turn_cnt, int move)
 	if (1 <= num && num <= (int)t_maps->col)
 		return (num);
 	return (1 + rand() % t_maps->col);
-	/* if (t_maps->maps[1][num] != '0') */
-	/* { */
-	/* 	for(num = 1; num <= (int)t_maps->col; ++num) */
-	/* 		if (t_maps->maps[1][num] == '0') */
-	/* 			break ; */
-	/* } */
 }
