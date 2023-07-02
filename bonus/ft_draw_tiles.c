@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:29:09 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 18:38:25 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/02 11:52:00 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ int	ft_draw_field_libx(t_info *t_maps)
 	int	status;
 
 	status = ft_draw_tiles(t_maps);
+	if (status == -1)
+	{
+		ft_error_with_free_libx(t_maps);
+		return (-1);
+	}
+	status = ft_put_img(t_maps, 'C', t_maps->cursor, 0);
 	if (status == -1)
 	{
 		ft_error_with_free_libx(t_maps);
