@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:43:37 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/02 09:59:38 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/02 10:15:12 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_decide(t_info *t_maps)
 	static int	turn_number = 1;
 
 	status = 1;
-	if (t_maps->first_move == CPU_MOVE && turn_number == 0)
+	if (t_maps->first_move == CPU_MOVE && turn_number == 1)
 		turn_number ++;
 	while (status == 1)
 	{
@@ -88,7 +88,7 @@ int	ft_decide(t_info *t_maps)
 				turn_number ++;
 				t_maps->input_mode = 0;
 				ft_draw_field_libx(t_maps);
-				status = ft_is_game_ended(t_maps, turn_number, t_maps->cursor);
+				status = ft_is_game_ended(t_maps, turn_number, where_to_put);
 				if (status == -1)
 					return (-1);
 				else if (status == 1 || status == 2)
@@ -106,6 +106,7 @@ int	ft_decide(t_info *t_maps)
 			}
 			else if (status == 1)
 			{
+				ft_printf(CYAN"Shell input mode off\n"RESET_COLOR);
 				t_maps->input_mode = 0;
 				mlx_hook(t_maps->window, 02, 1L << 0, ft_set_keyhook, (void *)t_maps);
 				mlx_loop(t_maps->screen);
