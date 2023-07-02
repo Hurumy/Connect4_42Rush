@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:40:19 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/02 13:16:44 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/02 17:13:44 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main_libx(int argc, char **argv)
 	while (t_maps.first_move == CPU_MOVE && status == 1)
 	{
 		ft_printf(CYAN"\nTurn 1.\nCPUs turn.\n"RESET_COLOR);
-		status = ft_add_pawn(&t_maps, 1, CPU_MOVE + 1);
+		status = ft_add_pawn(&t_maps, ft_move_by_cpu(&t_maps, 1, CPU_MOVE), CPU_MOVE);
 		if (status != 1)
 		{
 			status = ft_draw_field_libx(&t_maps);
