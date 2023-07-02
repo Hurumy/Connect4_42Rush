@@ -6,7 +6,7 @@
 /*   By: taekklee <taekklee@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 18:38:02 by taekklee          #+#    #+#             */
-/*   Updated: 2023/07/02 16:00:19 by taekklee         ###   ########.fr       */
+/*   Updated: 2023/07/02 18:45:34 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@ static int	ft_is_over(t_board *brd, char c);
 static void	ft_cal_null_cnt(t_board *brd);
 static char	**ft_copy_map(char **strs, size_t h, size_t w);
 static int	ft_free_board(t_board *brd, int ret);
-
-/* void	print_map(t_board *brd) */
-/* { */
-/* 	for(int i = 1; i <= (int)brd->h - 2; ++i) */
-/* 		printf("%s\n", brd->map[i] + 1); */
-/* } */
 
 int	ft_cal_move(t_info *t_maps, int move)
 {
@@ -42,10 +36,9 @@ int	ft_cal_move(t_info *t_maps, int move)
 			continue;
 		brd.map[brd.null_cnt[j]][j] = player;
 		--(brd.null_cnt[j]);
-		eval = ft_eval_board(&brd, opp_player, MAX_DEPTH, left, right);
+		eval = ft_eval_board(&brd, opp_player, brd.depth, left, right);
 		++(brd.null_cnt[j]);
 		brd.map[brd.null_cnt[j]][j] = '0';
-		/* printf("j : %d , eval : %d\n", j, eval); */
 		if (eval == -1)
 		{
 			num = j;
@@ -54,7 +47,6 @@ int	ft_cal_move(t_info *t_maps, int move)
 		if (eval == 0)
 			brd.cand_arr[brd.cand_sz++] = j;
 	}
-	/* printf("num : %d, brd.cand_sz : %zu \n", num, brd.cand_sz); */
 	if (num == 0)
 		num = brd.cand_sz == 0 ?
 			1 + rand() % t_maps->col :
@@ -64,6 +56,12 @@ int	ft_cal_move(t_info *t_maps, int move)
 
 static int	ft_init_board(t_board *brd, t_info *t_maps)
 {
+	if (t_maps->row <= 7 && t_maps->col <= 7)
+		brd->depth = HIGH_DEPTH;
+	else if (t_maps->row <= 10 && t_maps->col <= 10)
+		brd->depth = MID_DEPTH;
+	else
+		brd->depth = LOW_DEPTH;
 	brd->h = t_maps->row + 2;
 	brd->w = t_maps->col + 2;
 	brd->cand_sz = 0;

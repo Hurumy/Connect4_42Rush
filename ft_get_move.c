@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:13:35 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/02 16:12:21 by taekklee         ###   ########.fr       */
+/*   Updated: 2023/07/02 18:19:08 by taekklee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_get_move(t_info *t_maps)
 		else
 		{
 			ft_printf(CYAN"Turn %u.\nCPUs turn.\n"RESET_COLOR, turn_number);
-			where_to_put = ft_move_by_cpu(t_maps, turn_number, move);
+			where_to_put = ft_move_by_cpu(t_maps, turn_number);
 		}
 		if (where_to_put == -1)
 			return (-1);
@@ -95,13 +95,13 @@ int	ft_move_by_player(void)
 	return (num == -1 ? 0 : num);
 }
 
-int	ft_move_by_cpu(t_info *t_maps, int turn_cnt, int move)
+int	ft_move_by_cpu(t_info *t_maps, int turn_cnt)
 {
 	int	num;
 
 	if (turn_cnt == 1)
 		return ((t_maps->col + 1) / 2);
-	num = ft_cal_move(t_maps, move);
+	num = ft_cal_move(t_maps, CPU_MOVE);
 	if (1 <= num && num <= (int)t_maps->col)
 		return (num);
 	return (1 + rand() % t_maps->col);
