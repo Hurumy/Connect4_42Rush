@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:17:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/02 16:13:17 by taekklee         ###   ########.fr       */
+/*   Updated: 2023/07/02 17:19:48 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,6 @@ int		ft_arg_to_number_libx(int argc, char **argv, t_info *t_maps);
 //ft_draw_tiles.c
 int		ft_put_img(t_info *t_maps, char map, size_t x, size_t y);
 int		ft_draw_field_libx(t_info *t_maps);
-
-//ft_get_move_libx.c
-int		ft_get_move_libx(t_info *t_maps);
 
 //ft_hooks.c
 int		ft_set_keyhook(int keycode, t_info *t_maps);
