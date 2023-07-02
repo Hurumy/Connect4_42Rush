@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:17:36 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 18:29:10 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/02 09:44:16 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define A_KEY			0
 # define S_KEY			1
 # define D_KEY			2
+# define F_KEY			3
 
 # define PLAYER_MOVE (0)
 # define CPU_MOVE (1)
@@ -61,6 +62,7 @@ typedef struct s_info
 	void	*tip_cursor;
 	void	*tip_base;
 	int		cursor;
+	size_t	input_mode;
 }	t_info;
 
 //ft_init.c
@@ -83,6 +85,7 @@ int		ft_draw_field(t_info *t_maps);
 //ft_get_move.c
 int		ft_get_move(t_info *t_maps);
 int		ft_move_by_cpu(t_info *t_maps);
+int		ft_move_by_player(void);
 
 //ft_add_pawn.c
 int		ft_add_pawn(t_info *t_maps, size_t x, int player);

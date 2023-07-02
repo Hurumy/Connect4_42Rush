@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:13:35 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/01 17:41:31 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/02 09:45:14 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static char	*ft_trim_str(char *line, const char *set);
 static int	ft_extract_number(char *line);
-static int	ft_move_by_player();
+int			ft_move_by_player();
 
 int	ft_get_move(t_info *t_maps)
 {
@@ -81,7 +81,7 @@ static int	ft_extract_number(char *line)
 	return (ft_atoi_rewrite(line));
 }
 
-static int	ft_move_by_player(void)
+int	ft_move_by_player(void)
 {
 	char	*line;
 	int		num;

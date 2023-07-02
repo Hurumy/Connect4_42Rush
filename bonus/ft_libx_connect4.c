@@ -6,7 +6,7 @@
 /*   By: komatsud <komatsud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:40:19 by komatsud          #+#    #+#             */
-/*   Updated: 2023/07/02 09:01:08 by komatsud         ###   ########.fr       */
+/*   Updated: 2023/07/02 09:40:44 by komatsud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main_libx(int argc, char **argv)
 	if (status == -1)
 		return (-1);
 	t_maps.cursor = 1;
+	t_maps.input_mode = 0;
 	ft_randomly_choose_first_move(&t_maps);
 	if (t_maps.first_move == CPU_MOVE)
 	{
