@@ -1,6 +1,6 @@
 # Connect4_42Rush
 
-This is for a 42 project: Rushes Connect4.  
+This is codes for a 42 project: Rushes Connect4.  
 42のプロジェクトであるところのConnect4のコードです。  
 
 </br>
@@ -21,7 +21,10 @@ Open the game.
 - If there is a 3rd arg, the game will open with GUI mode. （Maybe MacOS only）  
   
 - AとDキーでカーソル移動、Sで駒を落とします。
-- You can move cursor with A&D key, drop a pawn with S key. 
+- You can move a cursor with A or D key, put a pawn with S key. 
+
+- もしくは第三引数なしでシェル上でも遊べます。半角数字を入力し、エンターキーを押して行を選びます。
+- You can play on your shell, without a 3rd arg. You can choose the column with entering a number.
 
 </br>
 </br>
@@ -29,7 +32,7 @@ Open the game.
 ***
   
 **開発期間が50時間しかなく、コードが恐ろしく汚いです。  
-Since developing pereod is only 50h, this source code is very unreadble.**  
+Since developing period is only 50h, this source code is very unreadable.**  
 
 ***
 
